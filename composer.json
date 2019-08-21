@@ -1,0 +1,13 @@
+{
+    "name": "regionhalland/region-halland-acf-page-additions",
+    "description": "Skapa en textruta med plats för extra informationstext",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roland Hydén",
+            "email": "Roland.Hyden@Regionhalland.se"
+        }
+    ],
+    "require": {}
+}

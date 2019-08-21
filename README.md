@@ -1,2 +1,1 @@
-# region-halland-acf-page-additions
-Test av system för ledningssystem
+## Hur man använder Region Hallands plugin "region-halland-acf-page-additions"
