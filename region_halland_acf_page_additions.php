@@ -6,7 +6,7 @@
 	/*
 	Plugin Name: Region Halland ACF Page Additions
 	Description: ACF-fält för tillägg till en sida
-	Version: 1.0.0
+	Version: 1.1.0
 	Author: Roland Hydén
 	License: MIT
 	Text Domain: regionhalland
@@ -25,11 +25,11 @@
 			    'title' => ' ',
 			    'fields' => array(
 			        0 => array(
-			        	'key' => 'field_1000246',
-					    'label' => 'www.regionhalland.se',
-			            'name' => 'name_1000247',
+			        	'key' => 'field_3000001',
+					    'label' => 'Granskare av dokumentet',
+			            'name' => 'name_3000002',
 			            'type' => 'textarea',
-			            'instructions' => __('Extra information'),
+			            'instructions' => __('Granskare'),
 			            'required' => 0,
 			            'conditional_logic' => 0,
 			            'wrapper' => array(
@@ -40,13 +40,13 @@
 			            'default_value' => '',
 			            'placeholder' => __('', 'regionhalland'),
 			            'maxlength' => '',
-			            'rows' => 4,
+			            'rows' => 6,
 			            'new_lines' => '',
 			        ),
 			        1 => array(
-			        	'key' => 'field_1000248',
-					    'label' => 'www.vardgivare.regionhalland.se',
-			            'name' => 'name_1000249',
+			        	'key' => 'field_3000003',
+					    'label' => 'www.regionhalland.se',
+			            'name' => 'name_3000004',
 			            'type' => 'textarea',
 			            'instructions' => __('Extra information'),
 			            'required' => 0,
@@ -63,9 +63,9 @@
 			            'new_lines' => '',
 			        ),
 			        2 => array(
-			        	'key' => 'field_1000250',
-					    'label' => 'www.intra.regionhalland.se',
-			            'name' => 'name_1000251',
+			        	'key' => 'field_3000005',
+					    'label' => 'www.vardgivare.regionhalland.se',
+			            'name' => 'name_3000006',
 			            'type' => 'textarea',
 			            'instructions' => __('Extra information'),
 			            'required' => 0,
@@ -82,62 +82,24 @@
 			            'new_lines' => '',
 			        ),
 			        3 => array(
-						'key' => 'field_1000240',
-					    'label' => 'www.regionhalland.se',
-					    'name' => 'name_1000241',
-					    'type' => 'wysiwyg',
-					    'instructions' => 'Extra information',
-					    'required' => 0,
-					    'conditional_logic' => 0,
-					    'wrapper' => [
-					        'width' => '',
-					        'class' => '',
-					        'id' => '',
-					    ],
-					    'default_value' => '',
-					    'toolbar' => 'basic',
-					    'tabs' => 'text',
-					    'media_upload' => 0,
-					    'delay' => 0,
-					),
-			        4 => array(
-						'key' => 'field_1000242',
-					    'label' => 'www.vardgivare.regionhalland.se',
-					    'name' => 'name_1000243',
-					    'type' => 'wysiwyg',
-					    'instructions' => 'Extra information',
-					    'required' => 0,
-					    'conditional_logic' => 0,
-					    'wrapper' => [
-					        'width' => '',
-					        'class' => '',
-					        'id' => '',
-					    ],
-					    'default_value' => '',
-					    'toolbar' => 'basic',
-					    'tabs' => 'text',
-					    'media_upload' => 0,
-					    'delay' => 0,
-					),
-			        5 => array(
-						'key' => 'field_1000244',
+			        	'key' => 'field_3000007',
 					    'label' => 'www.intra.regionhalland.se',
-					    'name' => 'name_1000245',
-					    'type' => 'wysiwyg',
-					    'instructions' => 'Extra information',
-					    'required' => 0,
-					    'conditional_logic' => 0,
-					    'wrapper' => [
-					        'width' => '',
-					        'class' => '',
-					        'id' => '',
-					    ],
-					    'default_value' => '',
-					    'toolbar' => 'basic',
-					    'tabs' => 'text',
-					    'media_upload' => 0,
-					    'delay' => 0,
-					),
+			            'name' => 'name_3000008',
+			            'type' => 'textarea',
+			            'instructions' => __('Extra information'),
+			            'required' => 0,
+			            'conditional_logic' => 0,
+			            'wrapper' => array(
+			                'width' => '',
+			                'class' => '',
+			                'id' => '',
+			            ),
+			            'default_value' => '',
+			            'placeholder' => __('', 'regionhalland'),
+			            'maxlength' => '',
+			            'rows' => 4,
+			            'new_lines' => '',
+			        ),
 			    ),
 			    'location' => array(
 			        0 => array(
@@ -161,6 +123,27 @@
 		endif;
 	
 	}
+
+	 	// Lägg till kolumner som ska hämtas ut
+ 	function add_region_halland_acf_page_additions_pages_columns($columns) {
+   		return array_merge ($columns, array ( 
+     		'name_3000002' => __ ( 'Granskare' )
+     		) 
+   		);
+ 	}
+ 	add_filter ('manage_pages_columns', 'add_region_halland_acf_page_additions_pages_columns' );
+
+	// Lägg till kolumner som ska hämtas ut
+ 	function region_halland_acf_oage_additions_pages_custom_column($column, $post_id) {
+   		switch ($column) {
+     		case 'name_3000002':
+     			$myGranskare = get_field('name_3000002', $post_id);
+       			echo $myGranskare;
+       			break;
+     	}
+ 	}
+ 	add_action ('manage_pages_custom_column', 'region_halland_acf_oage_additions_pages_custom_column', 10, 2 );
+
 
 	// Metod som anropas när pluginen aktiveras
 	function region_halland_acf_page_additions_activate() {
