@@ -6,7 +6,7 @@
 	/*
 	Plugin Name: Region Halland ACF Page Additions
 	Description: ACF-fält för tillägg till en sida
-	Version: 1.1.0
+	Version: 1.2.0
 	Author: Roland Hydén
 	License: MIT
 	Text Domain: regionhalland
@@ -45,10 +45,10 @@
 			        ),
 			        1 => array(
 			        	'key' => 'field_3000003',
-					    'label' => 'www.regionhalland.se',
+					    'label' => 'Fastställare av dokumentet',
 			            'name' => 'name_3000004',
 			            'type' => 'textarea',
-			            'instructions' => __('Extra information'),
+			            'instructions' => __('Fastställare'),
 			            'required' => 0,
 			            'conditional_logic' => 0,
 			            'wrapper' => array(
@@ -59,12 +59,12 @@
 			            'default_value' => '',
 			            'placeholder' => __('', 'regionhalland'),
 			            'maxlength' => '',
-			            'rows' => 4,
+			            'rows' => 6,
 			            'new_lines' => '',
 			        ),
 			        2 => array(
 			        	'key' => 'field_3000005',
-					    'label' => 'www.vardgivare.regionhalland.se',
+					    'label' => 'Delblock 1',
 			            'name' => 'name_3000006',
 			            'type' => 'textarea',
 			            'instructions' => __('Extra information'),
@@ -83,8 +83,27 @@
 			        ),
 			        3 => array(
 			        	'key' => 'field_3000007',
-					    'label' => 'www.intra.regionhalland.se',
+					    'label' => 'Delblock 2',
 			            'name' => 'name_3000008',
+			            'type' => 'textarea',
+			            'instructions' => __('Extra information'),
+			            'required' => 0,
+			            'conditional_logic' => 0,
+			            'wrapper' => array(
+			                'width' => '',
+			                'class' => '',
+			                'id' => '',
+			            ),
+			            'default_value' => '',
+			            'placeholder' => __('', 'regionhalland'),
+			            'maxlength' => '',
+			            'rows' => 4,
+			            'new_lines' => '',
+			        ),
+			        4 => array(
+			        	'key' => 'field_3000009',
+					    'label' => 'Delblock 3',
+			            'name' => 'name_3000010',
 			            'type' => 'textarea',
 			            'instructions' => __('Extra information'),
 			            'required' => 0,
@@ -127,7 +146,8 @@
 	 	// Lägg till kolumner som ska hämtas ut
  	function add_region_halland_acf_page_additions_pages_columns($columns) {
    		return array_merge ($columns, array ( 
-     		'name_3000002' => __ ( 'Granskare' )
+     		'name_3000002' => __ ( 'Granskare' ),
+     		'name_3000004' => __ ( 'Fastställare' )
      		) 
    		);
  	}
@@ -139,6 +159,10 @@
      		case 'name_3000002':
      			$myGranskare = get_field('name_3000002', $post_id);
        			echo $myGranskare;
+       			break;
+     		case 'name_3000004':
+     			$myFaststallare = get_field('name_3000004', $post_id);
+       			echo $myFaststallare;
        			break;
      	}
  	}
